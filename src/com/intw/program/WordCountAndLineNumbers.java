@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class ChewyInterviewProgram {
+public class WordCountAndLineNumbers {
 
 	/**
 	 *  Requirement:
@@ -46,8 +46,8 @@ public class ChewyInterviewProgram {
 				"Get dressed for the work",
 				"Do your work");
 
-		ChewyInterviewProgram cp = new ChewyInterviewProgram();
-		Map<String, WordModel> hMap =  cp.wordService(strings);
+		WordCountAndLineNumbers wcl = new WordCountAndLineNumbers();
+		Map<String, WordModel> hMap =  wcl.wordService(strings);
 		//print output
 		hMap.entrySet().stream().forEach(es -> System.out.println(es.getKey()+ " : " + 
 				es.getValue().getWordCount() + " :: " +
