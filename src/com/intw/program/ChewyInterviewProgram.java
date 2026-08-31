@@ -14,7 +14,7 @@ public class ChewyInterviewProgram {
 	/**
 	 *  Requirement:
 	 * 
-	 * Given the list of sentences are given
+	 * Given the list of sentences
 	 * Get count of each word and the line number the word is present
 	 * 
 	 * Use case
@@ -24,7 +24,7 @@ public class ChewyInterviewProgram {
 	 * "Brush your teeth"
 	 * "Get dressed for the work", "Do your work");
 	 * Output: Word: no of times word appear in the whole list :: Set of line numbers the word has appeared
-	 *  
+	 *  (assumption: Line number starts from 0)
 	 *  in : 2 :: [0, 1]  work : 2 :: [3, 4]  for : 1 :: [3]  Have : 1 :: [1]
         dressed : 1 :: [3]  your : 2 :: [2, 4]  Do : 1 :: [4]  Brush : 1 :: [2]
         morning : 2 :: [0, 1]  the : 3 :: [0, 1, 3]  Get : 2 :: [0, 3] teeth : 1 :: [2]
