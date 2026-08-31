@@ -36,21 +36,18 @@ public class ChewyInterviewProgram {
 	 *  O/P: Map with 
 	 *       key:    word: String,  
 	 *       value:  object with data variables word: String, wordCount: int, lineNumberSet: List
-	 *       
 	 */
 
-
-
-	List<String> strings =  Arrays.asList("Get up early in the morning", 
-			                              "Have breakfast in the morning",
-			                              "Brush your teeth",
-			                              "Get dressed for the work",
-			                              "Do your work");
-
-	
 	public static void main(String[] args) {
+		//Input: String List
+		List<String> strings =  Arrays.asList("Get up early in the morning", 
+				"Have breakfast in the morning",
+				"Brush your teeth",
+				"Get dressed for the work",
+				"Do your work");
+
 		ChewyInterviewProgram cp = new ChewyInterviewProgram();
-		Map<String, WordModel> hMap =  cp.wordService();
+		Map<String, WordModel> hMap =  cp.wordService(strings);
 		//print output
 		hMap.entrySet().stream().forEach(es -> System.out.println(es.getKey()+ " : " + 
 				es.getValue().getWordCount() + " :: " +
@@ -78,33 +75,34 @@ public class ChewyInterviewProgram {
 		}
 		public void setWordCount(int wordCount) {
 			this.wordCount = wordCount;
-		}		public WordModel(String word, int wordCount, Set<Integer> lineNumberSet) {
+		}	
+		public WordModel(String word, int wordCount, Set<Integer> lineNumberSet) {
 			this.word = word;
 			this.wordCount = wordCount;
 			this.lineNumberSet = lineNumberSet;
 		}
 	}
-	
 
-	public final Map<String, WordModel> wordService() {
+
+	public final Map<String, WordModel> wordService(List<String> strings) {
 		Map<String, WordModel> hMap =  new HashMap<>(); 
 		// output HashMap collects the data
 		IntStream.range(0, strings.size())   //stream1
 		.map(i-> {			
-			       Arrays.stream(strings.get(i).split(" "))  //stream2
-			       .map(str-> {
-				            if(hMap.get(str) == null){					
-					           hMap.put(str, new WordModel(str,0, new HashSet<>()));
-				             }
-				             hMap.get(str).setWordCount(hMap.get(str).getWordCount() + 1);		        	        	       
-				             hMap.get(str).getLineNumberSet().add(i);
-				            //dummy return for map operation 
-				             return str;
-			                })
-			       .collect(Collectors.joining(",")); //dummy terminal operation
-			       //dummy return for map operation 
-			       return i;
-		         })				
+			Arrays.stream(strings.get(i).split(" "))  //stream2
+			.map(str-> {
+				if(hMap.get(str) == null){					
+					hMap.put(str, new WordModel(str,0, new HashSet<>()));
+				}
+				hMap.get(str).setWordCount(hMap.get(str).getWordCount() + 1);		        	        	       
+				hMap.get(str).getLineNumberSet().add(i);
+				//dummy return for map operation 
+				return str;
+			   })
+			.collect(Collectors.joining(",")); //dummy terminal operation
+			//dummy return for map operation 
+			return i;
+		   })				
 		.reduce(1, (i1,i2)->i1+i2); //dummy terminal operation 
 		return hMap;
 	}
